@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController = null;
     bool JumpDesired = false;
     Vector3 velocity = Vector3.zero;
+    [SerializeField] Vector3 startPos;
+    [SerializeField] float deathHeight = -10.0f, respawnHeight = 5.0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -29,6 +32,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         HandleMove();
+        if (IsDead())
+            transform.position = startPos + Vector3.up * respawnHeight;
     }
 
     void GetInput()
@@ -67,5 +72,10 @@ public class PlayerController : MonoBehaviour
 
         
         characterController.Move((transform.rotation * velocity) * Time.deltaTime);
+    }
+
+    bool IsDead()
+    {
+        return transform.position.y < deathHeight;
     }
 }
