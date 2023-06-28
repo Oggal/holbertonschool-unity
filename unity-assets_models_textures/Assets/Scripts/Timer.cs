@@ -16,9 +16,14 @@ public class Timer : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log("Timer Enabled");
         startTime = System.DateTime.Now;
 
+    }
+
+    void OnDisable()
+    {
+        TimerText.color = Color.green;
+        TimerText.fontSize = 60;
     }
 
     // Update is called once per frame
