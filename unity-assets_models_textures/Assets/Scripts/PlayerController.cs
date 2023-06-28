@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         desiredDirection.x = Input.GetAxis("Horizontal");
         desiredDirection.z = Input.GetAxis("Vertical");
         desiredDirection.Normalize();
-        JumpDesired = JumpDesired || Input.GetButtonDown("Jump");
+        JumpDesired = (JumpDesired || Input.GetButtonDown("Jump")) && characterController.isGrounded;
     }
 
     void HandleMove()
