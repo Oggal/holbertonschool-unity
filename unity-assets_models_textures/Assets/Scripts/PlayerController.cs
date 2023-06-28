@@ -40,34 +40,16 @@ public class PlayerController : MonoBehaviour
         JumpDesired = JumpDesired || Input.GetButtonDown("Jump");
     }
 
-
-    void OLDHandleMove()
-    {
-        Vector3 accelerationVector = desiredDirection * acceleration;
-        accelerationVector.y = 0.0f;
-        if (JumpDesired && characterController.isGrounded){
-            accelerationVector.y = jumpForce;
-            JumpDesired = false;
-        }
-        else
-        {
-            accelerationVector.y = Physics.gravity.y;
-        }
-        velocity += accelerationVector * Time.fixedDeltaTime;
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-        velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, maxSpeed);
-        characterController.Move(velocity * Time.fixedDeltaTime);
-    }
-
     void HandleMove()
     {
         Vector3 Delta = (desiredDirection * maxSpeed) - velocity;
-        if( characterController.isGrounded)
+        Delta.y = 0.0f;
+
+        if (desiredDirection.magnitude > 0.1f)
         {
-            Delta.y = 0.0f;
+            Delta = Vector3.ClampMagnitude(Delta,acceleration) * Time.deltaTime;
         }
-        
-        velocity += Vector3.ClampMagnitude(Delta,acceleration) * Time.deltaTime;
+        velocity += Delta;
         velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, jumpForce * 2);
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         if (JumpDesired && characterController.isGrounded)
@@ -77,8 +59,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            velocity.y -= acceleration * Time.deltaTime;
+            if (!characterController.isGrounded)
+                velocity.y -= acceleration * Time.deltaTime;
+            else
+                velocity.y = 0.0f;
         }
-        characterController.Move(velocity * Time.deltaTime);
+
+        
+        characterController.Move((transform.rotation * velocity) * Time.deltaTime);
     }
 }
