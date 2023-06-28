@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Vector3 desiredDirection = Vector2.zero;
 
-    [SerializeField] float Speed = 5.0f;
+    [SerializeField] float acceleration = 5.0f, maxSpeed = 5.0f, jumpForce = 5.0f, maxFallSpeed = 4.0f;
     CharacterController characterController = null;
     bool JumpDesired = false;
+    Vector3 velocity = Vector3.zero;
 
 
     // Start is called before the first frame update
@@ -40,14 +41,44 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void HandleMove()
+    void OLDHandleMove()
     {
-        Vector3 JumpForce = Vector3.zero;
-        if (JumpDesired)
-        {
-            JumpForce = Vector3.up * 5.0f;
+        Vector3 accelerationVector = desiredDirection * acceleration;
+        accelerationVector.y = 0.0f;
+        if (JumpDesired && characterController.isGrounded){
+            accelerationVector.y = jumpForce;
             JumpDesired = false;
         }
-        characterController.SimpleMove(speed: (desiredDirection * Speed) + JumpForce);
+        else
+        {
+            accelerationVector.y = Physics.gravity.y;
+        }
+        velocity += accelerationVector * Time.fixedDeltaTime;
+        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, maxSpeed);
+        characterController.Move(velocity * Time.fixedDeltaTime);
+    }
+
+    void HandleMove()
+    {
+        Vector3 Delta = (desiredDirection * maxSpeed) - velocity;
+        if( characterController.isGrounded)
+        {
+            Delta.y = 0.0f;
+        }
+        
+        velocity += Vector3.ClampMagnitude(Delta,acceleration) * Time.deltaTime;
+        velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, jumpForce * 2);
+        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        if (JumpDesired && characterController.isGrounded)
+        {
+            velocity.y = jumpForce;
+            JumpDesired = false;
+        }
+        else
+        {
+            velocity.y -= acceleration * Time.deltaTime;
+        }
+        characterController.Move(velocity * Time.deltaTime);
     }
 }
