@@ -49,12 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 Delta = (desiredDirection * maxSpeed) - velocity;
         Delta.y = 0.0f;
-
-        if (desiredDirection.magnitude > 0.1f)
-        {
-            Delta = Vector3.ClampMagnitude(Delta,acceleration) * Time.deltaTime;
-        }
-        velocity += Delta;
+        velocity += Delta * acceleration * Time.deltaTime;
         velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, jumpForce * 2);
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
         if (JumpDesired && characterController.isGrounded)
