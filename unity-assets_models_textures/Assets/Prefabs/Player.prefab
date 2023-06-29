@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCamera: {fileID: 0}
+  ySpeed: -2
+  xSpeed: 1
 --- !u!114 &7463439886147348124
 MonoBehaviour:
   m_ObjectHideFlags: 0

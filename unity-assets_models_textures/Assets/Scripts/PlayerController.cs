@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleMove();
         if (IsDead())
-            transform.position = startPos + Vector3.up * respawnHeight;
+            Respawn();
     }
 
     void GetInput()
@@ -72,5 +72,11 @@ public class PlayerController : MonoBehaviour
     bool IsDead()
     {
         return transform.position.y < deathHeight;
+    }
+
+    void Respawn()
+    {
+        transform.position = startPos + Vector3.up * respawnHeight;
+        transform.rotation = Quaternion.identity;
     }
 }

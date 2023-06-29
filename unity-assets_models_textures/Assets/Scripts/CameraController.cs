@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Camera myCamera;
+    [SerializeField] float ySpeed = -0.01f, xSpeed = 1;
     Vector3 Offset, rotOffset;
+    float theta = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +20,11 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
-        myCamera.transform.position = transform.position + (transform.rotation * Offset);
-        myCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotOffset);
+        theta += Input.GetAxis("Mouse Y") * ySpeed;
+        theta = Mathf.Clamp(theta, 0, 90f);
+        transform.Rotate(0, Input.GetAxis("Mouse X") * xSpeed, 0);
+        myCamera.transform.position =  (transform.position + (transform.rotation * Quaternion.Euler(theta, 0, 0) * Offset));
+        myCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotOffset + (Vector3.right * theta));
         
     }
 }
