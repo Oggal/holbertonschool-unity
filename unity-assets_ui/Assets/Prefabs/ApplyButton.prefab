@@ -188,9 +188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Apply
-
-'
+  m_text: Apply
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 485c19e50f08ed5489dd8f41425726c8, type: 2}
   m_sharedMaterial: {fileID: 9016555463051708075, guid: 485c19e50f08ed5489dd8f41425726c8, type: 2}
