@@ -9,6 +9,6 @@ public class WinTrigger : MonoBehaviour
     {
         Timer otherTimer = other.GetComponent<Timer>();
         if (otherTimer != null)
-            otherTimer.enabled = false;
+            otherTimer.Win();
     }
 }

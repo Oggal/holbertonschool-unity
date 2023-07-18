@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1288,6 +1288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b36edf4d6e70f4aaa550784f086c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGM_slider: {fileID: 1435727615}
+  SFX_slider: {fileID: 1821581192}
+  Y_Invert: {fileID: 194564862}
 --- !u!1 &1419080944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,6 +2536,34 @@ PrefabInstance:
     - target: {fileID: 4905997485001564175, guid: 42355aa2ae07c894891f846782a18534, type: 3}
       propertyPath: m_Name
       value: ApplyButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748394546090658745, guid: 42355aa2ae07c894891f846782a18534, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748394546090658745, guid: 42355aa2ae07c894891f846782a18534, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748394546090658745, guid: 42355aa2ae07c894891f846782a18534, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1382440672}
+    - target: {fileID: 5748394546090658745, guid: 42355aa2ae07c894891f846782a18534, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748394546090658745, guid: 42355aa2ae07c894891f846782a18534, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Apply
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748394546090658745, guid: 42355aa2ae07c894891f846782a18534, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OptionsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748394546090658745, guid: 42355aa2ae07c894891f846782a18534, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6598066390424242238, guid: 42355aa2ae07c894891f846782a18534, type: 3}
       propertyPath: m_Pivot.x

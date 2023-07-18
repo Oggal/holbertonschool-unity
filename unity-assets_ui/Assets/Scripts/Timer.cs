@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] Text TimerText;
+    [SerializeField] TMPro.TMP_Text TimerText, WinTimeText;
 
-    float timePassed = 0;
+    System.TimeSpan timePassed = System.TimeSpan.Zero;
     System.DateTime startTime;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     void OnEnable()
     {
@@ -39,18 +36,32 @@ public class Timer : MonoBehaviour
         if( TimerText == null)
             return;
         System.TimeSpan timeSpan = System.DateTime.Now - startTime;
-        TimerText.text = timeSpan.ToString("mm':'ss'.'ff");
+        
+        TimerText.text = (timeSpan.Add(timePassed).ToString("mm':'ss'.'ff"));
     }
 
     void startTimer()
     {
-        timePassed = 0;
+        timePassed = System.TimeSpan.Zero;
         startTime = System.DateTime.Now;
     }
 
     void Pause()
     {
         System.TimeSpan span = System.DateTime.Now - startTime;
-        timePassed += (float) span.TotalMilliseconds;
+        timePassed += span;
+    }
+
+    void Resume()
+    {
+        startTime = System.DateTime.Now;
+    }
+
+    public void Win()
+    {
+        TimeSpan final = System.DateTime.Now - startTime;
+        final += timePassed;
+        WinTimeText.text = final.ToString("mm':'ss'.'ff");
+        TimerText.gameObject.SetActive(false);
     }
 }
