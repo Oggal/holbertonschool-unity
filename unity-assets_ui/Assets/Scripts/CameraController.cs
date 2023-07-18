@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour
     {
         if (myCamera == null)
             myCamera = Camera.main;
+        if (PlayerPrefs.HasKey("Y_Invert"))
+            isInverted = PlayerPrefs.GetInt("Y_Invert") == 1;
         Offset = myCamera.transform.position - transform.position;
         rotOffset = myCamera.transform.rotation.eulerAngles - transform.rotation.eulerAngles;
     }

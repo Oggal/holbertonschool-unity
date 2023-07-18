@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] Text TimerText;
+
+    float timePassed = 0;
     System.DateTime startTime;
     
     // Start is called before the first frame update
@@ -38,5 +40,17 @@ public class Timer : MonoBehaviour
             return;
         System.TimeSpan timeSpan = System.DateTime.Now - startTime;
         TimerText.text = timeSpan.ToString("mm':'ss'.'ff");
+    }
+
+    void startTimer()
+    {
+        timePassed = 0;
+        startTime = System.DateTime.Now;
+    }
+
+    void Pause()
+    {
+        System.TimeSpan span = System.DateTime.Now - startTime;
+        timePassed += (float) span.TotalMilliseconds;
     }
 }

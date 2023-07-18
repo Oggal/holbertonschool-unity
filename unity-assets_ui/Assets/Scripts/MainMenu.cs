@@ -10,13 +10,14 @@ public class MainMenu : MonoBehaviour
 
     public static void LevelSelect(int targetSceneIndex)
     {
-        MainMenu.lastScene = SceneManager.GetActiveScene().buildIndex;
+        OptionsMenu.lastScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(targetSceneIndex);
     }
 
     public void Options()
     {
-
+        OptionsMenu.lastScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(1);
     }
 
     public void Exit()
