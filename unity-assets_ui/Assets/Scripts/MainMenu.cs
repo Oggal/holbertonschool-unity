@@ -6,9 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public static int lastScene = 0;
-
-    public static void LevelSelect(int targetSceneIndex)
+    public void LevelSelect(int targetSceneIndex)
     {
         OptionsMenu.lastScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(targetSceneIndex);
@@ -22,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void Exit()
     {
-        Debug.Log("Exit Game");
+        Debug.Log("Exited");
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #else
