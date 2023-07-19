@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
 
     System.TimeSpan timePassed = System.TimeSpan.Zero;
     System.DateTime startTime;
+    bool running = false;
     public UnityEngine.Events.UnityEvent OnWin;
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class Timer : MonoBehaviour
 
     void UpdateTimerText()
     {
-        if( TimerText == null)
+        if( TimerText == null || startTime == null)
             return;
         System.TimeSpan timeSpan = System.DateTime.Now - startTime;
         
@@ -33,19 +34,26 @@ public class Timer : MonoBehaviour
         timePassed = System.TimeSpan.Zero;
         startTime = System.DateTime.Now;
         enabled = true;
+        running = true;
     }
 
     public void Pause()
     {
+        enabled = false;
+        if(!running)
+            return;
         System.TimeSpan span = System.DateTime.Now - startTime;
         timePassed += span;
-        enabled = false;
+        
     }
 
-    void Resume()
+    public void Resume()
     {
-        startTime = System.DateTime.Now;
-        enabled = true;
+        if (running)
+        {
+            startTime = System.DateTime.Now;
+            enabled = true;
+        }
     }
 
     public void Win()
@@ -55,5 +63,6 @@ public class Timer : MonoBehaviour
         WinTimeText.text = final.ToString("mm':'ss'.'ff");
         TimerText.gameObject.SetActive(false);
         OnWin.Invoke();
+        running = false;
     }
 }
