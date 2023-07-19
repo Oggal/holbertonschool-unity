@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity = Vector3.zero;
     [SerializeField] Vector3 startPos;
     [SerializeField] float deathHeight = -10.0f, respawnHeight = 5.0f;
-
+    public UnityEvent MenuToggle;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
     void GetInput()
     {
+        if (Input.GetButtonDown("Cancel"))
+            MenuToggle.Invoke();
         desiredDirection = Vector3.zero;
         desiredDirection.x = Input.GetAxis("Horizontal");
         desiredDirection.z = Input.GetAxis("Vertical");

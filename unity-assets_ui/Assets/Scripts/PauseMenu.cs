@@ -7,14 +7,17 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public UnityEvent<bool> ToggleMenu;
+    public UnityEvent<bool> ToggleMenuInverted;
 
     public void OnEnable()
     {
+        ToggleMenuInverted.Invoke(false);
         ToggleMenu.Invoke(true);
     }
 
     public void OnDisable()
     {
+        ToggleMenuInverted.Invoke(true);
         ToggleMenu.Invoke(false);
     }
 
@@ -37,12 +40,12 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        
+        gameObject.SetActive(true);
     }
 
     public void Resume()
     {
-
+        gameObject.SetActive(false);
     }
 
 }

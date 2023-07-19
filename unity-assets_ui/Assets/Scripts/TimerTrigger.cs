@@ -8,6 +8,6 @@ public class TimerTrigger : MonoBehaviour
     {
         Timer otherTimer = other.GetComponent<Timer>();
         if (otherTimer != null)
-            otherTimer.enabled = true;
+            otherTimer.startTimer();
     }
 }

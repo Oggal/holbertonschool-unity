@@ -11,19 +11,7 @@ public class Timer : MonoBehaviour
 
     System.TimeSpan timePassed = System.TimeSpan.Zero;
     System.DateTime startTime;
-    
-
-    void OnEnable()
-    {
-        startTime = System.DateTime.Now;
-
-    }
-
-    void OnDisable()
-    {
-        TimerText.color = Color.green;
-        TimerText.fontSize = 60;
-    }
+    public UnityEngine.Events.UnityEvent OnWin;
 
     // Update is called once per frame
     void Update()
@@ -40,21 +28,24 @@ public class Timer : MonoBehaviour
         TimerText.text = (timeSpan.Add(timePassed).ToString("mm':'ss'.'ff"));
     }
 
-    void startTimer()
+    public void startTimer()
     {
         timePassed = System.TimeSpan.Zero;
         startTime = System.DateTime.Now;
+        enabled = true;
     }
 
-    void Pause()
+    public void Pause()
     {
         System.TimeSpan span = System.DateTime.Now - startTime;
         timePassed += span;
+        enabled = false;
     }
 
     void Resume()
     {
         startTime = System.DateTime.Now;
+        enabled = true;
     }
 
     public void Win()
@@ -63,5 +54,6 @@ public class Timer : MonoBehaviour
         final += timePassed;
         WinTimeText.text = final.ToString("mm':'ss'.'ff");
         TimerText.gameObject.SetActive(false);
+        OnWin.Invoke();
     }
 }
