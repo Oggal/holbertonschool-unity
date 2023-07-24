@@ -1649,6 +1649,22 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3451118302482216456, guid: ce115f29abfefd64a854a5307c61e0a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ce115f29abfefd64a854a5307c61e0a5, type: 3}
+--- !u!114 &458355091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 690217004, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
+  m_PrefabInstance: {fileID: 3668812489418772210}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c628062e22897d4b8d92da1b462fc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!143 &458355093 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 3132663159835958742, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
+  m_PrefabInstance: {fileID: 3668812489418772210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &469395039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4242,6 +4258,7 @@ GameObject:
   - component: {fileID: 1162534237}
   - component: {fileID: 1162534236}
   - component: {fileID: 1162534235}
+  - component: {fileID: 1162534239}
   m_Layer: 0
   m_Name: CutsceneCamera
   m_TagString: Untagged
@@ -4335,7 +4352,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 9, y: 150, z: 0}
+  m_LocalEulerAnglesHint: {x: 9, y: 0, z: 0}
+--- !u!114 &1162534239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162534234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b97ee105ef976643b4bfd8a70db8d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1162534235}
+  OnAnimationEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 458355093}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2096163932}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 458355091}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 963194225}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1162534234}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1163350146
 GameObject:
   m_ObjectHideFlags: 0
@@ -7912,6 +8005,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7684271329002364607, guid: 544593bfc5c615b468c2ebbec2f83502, type: 3}
   m_PrefabInstance: {fileID: 2054492758}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2096163932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 577437402018555364, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
+  m_PrefabInstance: {fileID: 3668812489418772210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2122065562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c703980fa3df99e46b323c677393426d, type: 3}
@@ -8003,6 +8101,10 @@ PrefabInstance:
       propertyPath: myCamera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 577437402018555364, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7402412929279622544, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
       propertyPath: m_Name
       value: Player
