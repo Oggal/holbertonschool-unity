@@ -4335,7 +4335,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9, y: 150, z: 0}
 --- !u!1 &1163350146
 GameObject:
   m_ObjectHideFlags: 0
@@ -7999,6 +7999,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 690217004, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
+      propertyPath: myCamera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 7402412929279622544, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
       propertyPath: m_Name
       value: Player
