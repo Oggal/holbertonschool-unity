@@ -64,15 +64,9 @@ public class PlayerController : MonoBehaviour
             velocity.y = jumpForce;
             JumpDesired = false;
         }
-        else
-        {
-            if (!characterController.isGrounded)
-                velocity.y -= acceleration * Time.deltaTime;
-            else
-                velocity.y = 0.0f;
-        }
-
-        transform.rotation = Quaternion.SlerpUnclamped(transform.rotation,Quaternion.Euler(forwardDirection.GetDirection()),Time.deltaTime * velocity.magnitude);
+        velocity.y -= acceleration * Time.deltaTime;
+        if (desiredDirection.magnitude > 0.1f)
+            transform.rotation = Quaternion.SlerpUnclamped(transform.rotation,Quaternion.Euler(forwardDirection.GetDirection()),Time.deltaTime * velocity.magnitude);
         characterController.Move((transform.rotation * velocity) * Time.deltaTime);
     }
 
@@ -85,7 +79,9 @@ public class PlayerController : MonoBehaviour
     {
         if (myAnimator == null)
             return;
-        myAnimator.SetFloat("Speed", velocity.magnitude);
+        Vector3 planearVelocity = new Vector3(velocity.x, 0, velocity.z);
+        myAnimator.SetFloat("Speed", (planearVelocity.magnitude));
+
         myAnimator.SetBool("Grounded", characterController.isGrounded);
         
     }
