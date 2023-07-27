@@ -7,9 +7,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] Camera myCamera;
     [SerializeField] float ySpeed = -0.01f, xSpeed = 1;
 
+
     public bool isInverted = false;
     Vector3 Offset, rotOffset;
-    float viewAngle = 0;
+    float viewAngle = 0, playerRotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +30,16 @@ public class CameraController : MonoBehaviour
             invert = -1;
         viewAngle += Input.GetAxis("Mouse Y") * ySpeed * invert;
         viewAngle = Mathf.Clamp(viewAngle, 0, 90f);
-        transform.Rotate(0, Input.GetAxis("Mouse X") * xSpeed, 0);
-        myCamera.transform.position =  (transform.position + (transform.rotation * Quaternion.Euler(viewAngle, 0, 0) * Offset));
-        myCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotOffset + (Vector3.right * viewAngle));
+        //transform.Rotate(0, Input.GetAxis("Mouse X") * xSpeed, 0);
+        playerRotation += Input.GetAxis("Mouse X");
+        myCamera.transform.position =  (transform.position +  Quaternion.Euler(viewAngle, playerRotation, 0) * Offset);
+        myCamera.transform.rotation = Quaternion.Euler((Vector3.up * playerRotation) + rotOffset + (Vector3.right * viewAngle));
         
+    }
+
+    
+    public Vector3 GetDirection()
+    {
+        return (Vector3.up * playerRotation);
     }
 }

@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredDirection: {x: 0, y: 0, z: 0}
+  forwardDirection: {fileID: 690217004}
   acceleration: 8
   maxSpeed: 10
   jumpForce: 4

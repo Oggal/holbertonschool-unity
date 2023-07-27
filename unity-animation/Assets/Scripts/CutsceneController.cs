@@ -7,11 +7,12 @@ using UnityEngine.Events;
 public class CutsceneController : MonoBehaviour
 {
     public Animator animator;
-    public UnityEvent OnAnimationEnd;
+    public UnityEvent OnAnimationEnd, OnAnimationStart;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        OnAnimationStart.Invoke();
     }
 
     public void AnimationEnd()
@@ -19,9 +20,4 @@ public class CutsceneController : MonoBehaviour
         OnAnimationEnd.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

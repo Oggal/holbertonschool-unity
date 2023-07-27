@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] Vector3 desiredDirection = Vector2.zero;
-
+    [SerializeField] CameraController forwardDirection;
     [SerializeField] float acceleration = 5.0f, maxSpeed = 5.0f, jumpForce = 5.0f, maxFallSpeed = 4.0f;
     CharacterController characterController = null;
     bool JumpDesired = false;
@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 startPos;
     [SerializeField] float deathHeight = -10.0f, respawnHeight = 5.0f;
     public UnityEvent MenuToggle;
+
+    [SerializeField] Animator myAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInput();
+
     }
 
     // Fixed Update is called once per physics update
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
         HandleMove();
         if (IsDead())
             Respawn();
+        HandleAnimation();
     }
 
     void GetInput()
@@ -68,7 +72,7 @@ public class PlayerController : MonoBehaviour
                 velocity.y = 0.0f;
         }
 
-        
+        transform.rotation = Quaternion.SlerpUnclamped(transform.rotation,Quaternion.Euler(forwardDirection.GetDirection()),Time.deltaTime * velocity.magnitude);
         characterController.Move((transform.rotation * velocity) * Time.deltaTime);
     }
 
@@ -77,6 +81,14 @@ public class PlayerController : MonoBehaviour
         return transform.position.y < deathHeight;
     }
 
+    void HandleAnimation()
+    {
+        if (myAnimator == null)
+            return;
+        myAnimator.SetFloat("Speed", velocity.magnitude);
+        myAnimator.SetBool("Grounded", characterController.isGrounded);
+        
+    }
     void Respawn()
     {
         transform.position = startPos + Vector3.up * respawnHeight;
