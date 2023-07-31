@@ -840,11 +840,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d4679017f0f567049aac174f81a204ef, type: 3}
   m_PrefabInstance: {fileID: 363743333}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &164706896 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7169915517786271608, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
-  m_PrefabInstance: {fileID: 3668812489418772210}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &181883785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d66934380cad2fb4a9a8b6f2273368ef, type: 3}
@@ -4357,7 +4352,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 9, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9, y: 150, z: 0}
 --- !u!114 &1162534239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8105,30 +8100,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1202589740697380214, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
-      propertyPath: myAnimator
-      value: 
-      objectReference: {fileID: 164706896}
     - target: {fileID: 690217004, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
       propertyPath: myCamera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 7169915517786271608, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: dd2f38a7735a3b646821c7f1a40f3785, type: 2}
-    - target: {fileID: 7169915517786271608, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
-      propertyPath: m_CullingMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7169915517786271608, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
-      propertyPath: m_WarningMessage
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7169915517786271608, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7402412929279622544, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
       propertyPath: m_Name
       value: Player

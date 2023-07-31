@@ -63,6 +63,8 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = jumpForce;
             JumpDesired = false;
+            if(myAnimator != null)
+                myAnimator.SetTrigger("Jump");
         }
         velocity.y -= acceleration * Time.deltaTime;
         if (desiredDirection.magnitude > 0.1f)
