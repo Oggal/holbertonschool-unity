@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         velocity += Delta * acceleration * Time.deltaTime;
         velocity.y = Mathf.Clamp(velocity.y, -maxFallSpeed, jumpForce * 2);
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+
         if (JumpDesired && characterController.isGrounded)
         {
             velocity.y = jumpForce;
@@ -67,9 +68,13 @@ public class PlayerController : MonoBehaviour
                 myAnimator.SetTrigger("Jump");
         }
         velocity.y -= acceleration * Time.deltaTime;
+
+        Quaternion CameraRotation = Quaternion.Euler(forwardDirection.GetDirection());
+
         if (desiredDirection.magnitude > 0.1f)
-            transform.rotation = Quaternion.SlerpUnclamped(transform.rotation,Quaternion.Euler(forwardDirection.GetDirection()),Time.deltaTime * velocity.magnitude);
-        characterController.Move((transform.rotation * velocity) * Time.deltaTime);
+            transform.rotation = Quaternion.SlerpUnclamped(transform.rotation, Quaternion.LookRotation(CameraRotation * desiredDirection), Time.deltaTime * velocity.magnitude);
+
+        characterController.Move((CameraRotation * velocity) * Time.deltaTime);
     }
 
     bool IsDead()
