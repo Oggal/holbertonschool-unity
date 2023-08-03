@@ -361,7 +361,7 @@ AnimatorStateTransition:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
+  m_Name: ImpactToGettingUp
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -649680580513414444}
