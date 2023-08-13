@@ -1002,6 +1002,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 3668812489418772211}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1268059136}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -1653,7 +1665,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3668812489418772210}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b6da0715b82c4e4386fc8f71a5ec046, type: 3}
   m_Name: 
@@ -8331,6 +8343,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
+--- !u!114 &3668812489418772211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 690217004, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
+  m_PrefabInstance: {fileID: 3668812489418772210}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c628062e22897d4b8d92da1b462fc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6673845165240821976
 PrefabInstance:
   m_ObjectHideFlags: 0
