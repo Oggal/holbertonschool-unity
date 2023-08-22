@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,12 +18,16 @@ public class PlayerController : MonoBehaviour
     public UnityEvent MenuToggle;
 
     [SerializeField] Animator myAnimator;
-
+    [SerializeField] AudioSource audioSource;
+    public AudioClip StoneSound;
+    public AudioClip GrassSound;
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         startPos = transform.position;
+        if(audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -87,8 +92,11 @@ public class PlayerController : MonoBehaviour
         if (myAnimator == null)
             return;
         Vector3 planearVelocity = new Vector3(velocity.x, 0, velocity.z);
-        myAnimator.SetFloat("Speed", (planearVelocity.magnitude));
-
+        myAnimator.SetFloat("Speed", (desiredDirection.magnitude));
+        if( desiredDirection.magnitude > 0.01 && !audioSource.isPlaying) 
+            audioSource.Play();
+        if (desiredDirection.magnitude == 0)
+            audioSource.Stop();
         myAnimator.SetBool("Grounded", characterController.isGrounded);
         
     }
@@ -96,5 +104,24 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = startPos + Vector3.up * respawnHeight;
         transform.rotation = Quaternion.identity;
+    }
+
+    bool isStone(MeshRenderer renderer)
+    {
+        foreach(Material mat in renderer.materials)
+        {
+            if(mat.name.ToLower().Contains("stone"))
+                return true;
+        }
+        return false;
+    }
+
+    public void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        MeshRenderer targetVisual = hit.gameObject.GetComponent<MeshRenderer>();
+        if(targetVisual && isStone(targetVisual))
+            audioSource.clip = StoneSound;
+        else
+            audioSource.clip = GrassSound;
     }
 }

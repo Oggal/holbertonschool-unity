@@ -1291,6 +1291,8 @@ MonoBehaviour:
   BGM_slider: {fileID: 1435727615}
   SFX_slider: {fileID: 1821581192}
   Y_Invert: {fileID: 194564862}
+  BGM_Group: {fileID: 5843200578053736484, guid: 8074b0cc72df72347b57112418bc9f44, type: 2}
+  SFX_Group: {fileID: -5806318699018643099, guid: 8074b0cc72df72347b57112418bc9f44, type: 2}
 --- !u!1 &1419080944
 GameObject:
   m_ObjectHideFlags: 0

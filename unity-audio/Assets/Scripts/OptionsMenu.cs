@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,8 +10,14 @@ public class OptionsMenu : MonoBehaviour
 {
     public static int lastScene = 0;
 
-    public Slider BGM_slider, SFX_slider;
+    
+    [SerializeField] Slider BGM_slider, SFX_slider;
+
     public Toggle Y_Invert;
+
+    [Header("Audio Mixer")]
+    public AudioMixerGroup BGM_Group;
+    public AudioMixerGroup SFX_Group;
 
     public void Awake()
     {
@@ -32,7 +39,7 @@ public class OptionsMenu : MonoBehaviour
     public void Apply()
     {
         if (BGM_slider != null)
-            PlayerPrefs.SetFloat("BackgroundMusic", BGM_slider.value);
+            SetBGM();
         if (SFX_slider != null)
             PlayerPrefs.SetFloat("SoundEffects",SFX_slider.value);
         if (Y_Invert != null)
@@ -40,5 +47,38 @@ public class OptionsMenu : MonoBehaviour
 
         SceneManager.LoadScene(OptionsMenu.lastScene);
     }
+
+    void SetBGM()
+    {
+        if (BGM_slider == null)
+            return;
+        PlayerPrefs.SetFloat("BackgroundMusic", BGM_slider.value);
+
+        if (BGM_Group != null)
+        {
+            //Set output volume for mixer group
+            float newVolume = LinearToDecibel(BGM_slider.value);
+        }
+
+    }
+
+    private float LinearToDecibel(float linear)
+	{
+		float dB;
+		
+		if (linear != 0)
+			dB = 20.0f * Mathf.Log10(linear);
+		else
+			dB = -144.0f;
+		
+		return dB;
+	}
+
+    private float DecibelToLinear(float dB)
+	{
+		float linear = Mathf.Pow(10.0f, dB/20.0f);
+
+		return linear;
+	}
     
 }
