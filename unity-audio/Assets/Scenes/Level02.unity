@@ -844,7 +844,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7329032776151391429, guid: 18a841f758940c846bd85511cc8c764c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7329032776151391429, guid: 18a841f758940c846bd85511cc8c764c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1393,7 +1393,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8478032715670074909, guid: 794145c66551e284ebc5ce9cf086259a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8478032715670074909, guid: 794145c66551e284ebc5ce9cf086259a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3030,7 +3030,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8478032715670074909, guid: 794145c66551e284ebc5ce9cf086259a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8478032715670074909, guid: 794145c66551e284ebc5ce9cf086259a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3227,7 +3227,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8478032715670074909, guid: 794145c66551e284ebc5ce9cf086259a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8478032715670074909, guid: 794145c66551e284ebc5ce9cf086259a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5436,11 +5436,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1214036895}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Stop
-        m_Mode: 1
+        m_MethodName: set_clip
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8300000, guid: eec213a3beacb7648a8f8de42f7b4ec4, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8771,7 +8771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9130171776768919445, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9130171776768919445, guid: 08c42578daecd5147a704ecd446c5731, type: 3}
       propertyPath: m_LocalPosition.x

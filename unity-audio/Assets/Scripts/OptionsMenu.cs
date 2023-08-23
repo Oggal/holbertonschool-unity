@@ -16,8 +16,7 @@ public class OptionsMenu : MonoBehaviour
     public Toggle Y_Invert;
 
     [Header("Audio Mixer")]
-    public AudioMixerGroup BGM_Group;
-    public AudioMixerGroup SFX_Group;
+    public AudioMixer Mixer;
 
     public void Awake()
     {
@@ -41,7 +40,7 @@ public class OptionsMenu : MonoBehaviour
         if (BGM_slider != null)
             SetBGM();
         if (SFX_slider != null)
-            PlayerPrefs.SetFloat("SoundEffects",SFX_slider.value);
+            SetSFX();
         if (Y_Invert != null)
             PlayerPrefs.SetInt("Y_Invert",Y_Invert.isOn? 1 : 0);
 
@@ -54,10 +53,26 @@ public class OptionsMenu : MonoBehaviour
             return;
         PlayerPrefs.SetFloat("BackgroundMusic", BGM_slider.value);
 
-        if (BGM_Group != null)
+        if (Mixer != null)
         {
             //Set output volume for mixer group
             float newVolume = LinearToDecibel(BGM_slider.value);
+            Mixer.SetFloat("BGM_Vol", newVolume);
+        }
+
+    }
+
+        void SetSFX()
+    {
+        if (SFX_slider == null)
+            return;
+        PlayerPrefs.SetFloat("SoundEffects", SFX_slider.value);
+
+        if (Mixer != null)
+        {
+            //Set output volume for mixer group
+            float newVolume = LinearToDecibel(SFX_slider.value);
+            Mixer.SetFloat("SFX_Vol", newVolume);
         }
 
     }
