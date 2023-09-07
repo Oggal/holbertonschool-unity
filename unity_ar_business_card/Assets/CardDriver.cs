@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class CardDriver : MonoBehaviour
 {
-    Animator[] animators;
+    [SerializeField] Animator[] animators;
     // Start is called before the first frame update
-    void OnEnabled()
+    void Start()
+    {
+        animators = GetComponentsInChildren<Animator>();
+        foreach(Animator anim in animators)
+        {
+            anim.enabled = false;
+        }
+    }
+
+    public void OnEnable()
     { 
         foreach (Animator animator in animators)
         {
-            animator.speed = 1;
-            animator.StartPlayback();
+            animator.enabled = true;
         }
     }
 
     // Update is called once per frame
-    void OnDisabled()
+    public void OnDisable()
     {
-
+        foreach (Animator animator in animators)
+        {
+            animator.enabled = false;
+        }
     }
 }
