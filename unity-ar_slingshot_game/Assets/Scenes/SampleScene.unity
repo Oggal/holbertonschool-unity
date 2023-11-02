@@ -287,8 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4966719baa26e4b0e8231a24d9bd491a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FocusMode: 1
-  m_LightEstimationMode: 0
+  m_FocusMode: -1
+  m_LightEstimationMode: -1
   m_AutoFocus: 1
   m_LightEstimation: 0
   m_FacingDirection: 1
@@ -508,8 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 5244678042099672017, guid: 8eb06bb77b0c6934b8f689eb2b74efc9, type: 3}
-  m_DetectionMode: -1
+  m_PlanePrefab: {fileID: 6590399193388560785, guid: bf8803d012aed1b4bb76536f9125a239, type: 3}
+  m_DetectionMode: 1
 --- !u!114 &782628377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Camera: {fileID: 256664408}
   m_OriginBaseGameObject: {fileID: 1483352964}
   m_CameraFloorOffsetObject: {fileID: 434651713}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 1
   m_CameraYOffset: 1.1176
 --- !u!4 &1483352966
 Transform:
