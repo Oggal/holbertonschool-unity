@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour
         line = cam.GetComponent<LineRenderer>();
         line.positionCount = lineResolution; 
         planeManager.mainPlaneFound.AddListener(StartGame);
-        planeManager.mainPlaneLost.AddListener(ErrorEnd);
         sphereStart = displaySphere.transform.localPosition;
         displaySphere.GetComponent<SphereController>().curve = curve;
         sphereData = displaySphere.GetComponent<SphereController>();
@@ -65,15 +64,11 @@ public class GameController : MonoBehaviour
         curStatus = status.gameStarted;
     }
 
-    public void ErrorEnd()
-    {
-        curStatus = status.gameEnded;
-    }
-
     public void HandleRunningInput()
     {
         if( Input.touchCount ==0)
         {
+            line.enabled = false;
             if(touchStart.HasValue)
             {
                 sphereData.launch();
