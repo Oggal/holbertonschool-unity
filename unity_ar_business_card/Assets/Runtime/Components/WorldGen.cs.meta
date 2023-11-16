@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 39619df8760dc134089da9ed0ce85de9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Player: {instanceID: 0}
+  - FallbackNoiseObject: {fileID: 11400000, guid: afbbd13a9f87ef7449d477f53eca8df3,
+      type: 2}
+  - ScaleMap: {fileID: 11400000, guid: afbbd13a9f87ef7449d477f53eca8df3, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

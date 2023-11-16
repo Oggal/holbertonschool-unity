@@ -15,11 +15,14 @@ public class GameController : MonoBehaviour
     public GameObject cam;
     public int lineResolution = 10;
     [SerializeField] GameObject hitmarker;
+    [SerializeField] GameObject displaySphere;
+    SphereController sphereData;
     LineRenderer line;
 
     GameObject targetParent;
     PlaneManager planeManager;
     Vector2? touchStart = null;
+    Vector3 sphereStart;
 
     enum status { searching, gameStarted, gameEnded };
     
@@ -29,8 +32,12 @@ public class GameController : MonoBehaviour
     {
         planeManager = GetComponent<PlaneManager>();
         line = cam.GetComponent<LineRenderer>();
+        line.positionCount = lineResolution; 
         planeManager.mainPlaneFound.AddListener(StartGame);
         planeManager.mainPlaneLost.AddListener(ErrorEnd);
+        sphereStart = displaySphere.transform.localPosition;
+        displaySphere.GetComponent<SphereController>().curve = curve;
+        sphereData = displaySphere.GetComponent<SphereController>();
     }
     public void OnGUI()
     {
@@ -47,7 +54,8 @@ public class GameController : MonoBehaviour
     {
         if(curStatus == status.gameStarted)
         {
-            HandleRunningInput();
+            if(sphereData.isReady)
+                HandleRunningInput();
         }
     }
 
@@ -66,7 +74,13 @@ public class GameController : MonoBehaviour
     {
         if( Input.touchCount ==0)
         {
-            //line.enabled = false;
+            if(touchStart.HasValue)
+            {
+                sphereData.launch();
+                touchStart = null;
+                return;
+            }
+            displaySphere.transform.localPosition = sphereStart;
             return;
         }
         Touch touch = Input.GetTouch(0);
@@ -76,8 +90,10 @@ public class GameController : MonoBehaviour
             return;
         }
         Vector2 drag = touch.position - touchStart.Value;
+        drag.x /= Screen.width;
+        drag.y /= Screen.height;
         Vector3 rayDir = cam.transform.forward;
-        rayDir = Quaternion.Euler(0, drag.x * -0.25f, (drag.y) * 0.37f) * rayDir;
+        rayDir = Quaternion.Euler((drag.y) * 45, (drag.x) * 45, 0) * rayDir;
         RaycastHit hit;
         Vector3 hitPos = cam.transform.position + (rayDir * 5f);
         
@@ -86,17 +102,20 @@ public class GameController : MonoBehaviour
             hitPos = hit.point;
             hitmarker.transform.position = hit.point;
         }
-        line.positionCount = lineResolution;
+
+        sphereData.SetData(
+            Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0.15f)),
+            cam.transform.forward,
+            hitPos);
+
         for(int i = 0; i < lineResolution; i++)
         {
             var t = i / (float)lineResolution;
-            line.SetPosition(i,Vector3.Lerp(cam.transform.position 
-                - (cam.transform.up * 1.5f) 
-                + (cam.transform.forward*t),
-            hitPos,curve.Evaluate(t)));
+            line.SetPosition(i,sphereData.CalcLine(t)); 
         }
         line.enabled = true;
         hitmarker.SetActive(hit.collider != null);
+        //displaySphere.transform.position = line.GetPosition(2);
     }
 
 }
